@@ -1,0 +1,106 @@
+<template>
+    <lightning-card title="BuildingInformation" icon-name="custom:custom14">
+      <div class="slds-m-around_medium">
+        <!--<p>Hello, {greeting}!</p> -->
+
+        <template if:true={buildingInfos}>
+            <template iterator:it={buildingInfos}>
+            <!--<template for:each={buildingInfos} for:item="building_account__c">-->
+                <!--<p key={building_account__c.Id}>{building_account__c.Building_BA__r.Name}</p>
+                <p key={building_account__c.Id}>{building_account__c.Building_BA__r.Name}</p>
+                <p key={building_account__c.Id}>{building_account__c.Building_BA__r.RSF__c}</p>
+                <p key={building_account__c.Id}>{building_account__c.Building_BA__r.Floors__c}</p>
+                <p key={building_account__c.Id}>{building_account__c.Building_BA__r.building_website__c}</p>
+                <p key={building_account__c.Id}>{building_account__c.Building_BA__r.Year_Built__c}</p>
+                <p key={building_account__c.Id}>{building_account__c.Building_BA__r.Year_Renovated__c}</p>
+                <p key={building_account__c.Id}>{building_account__c.Building_BA__r.Parking_Ratio__c}</p> -->
+                <lightning-layout multiple-rows key={it.value.Id}>
+
+                    <lightning-layout-item size="12">
+                        <lightning-input if:true={it.first} key={it.value.Id} label="Building Address" value={it.value.Building_BA__r.Name} readonly=true>
+                        </lightning-input>
+                    </lightning-layout-item>
+                    
+                    <lightning-layout-item size="12">
+                        <lightning-input if:true={it.first} key={it.value.Id} label="Building Name" value={it.value.Building_BA__r.Name__c} readonly=true>
+                        </lightning-input>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="6">
+                        <lightning-input if:true={it.first} key={it.value.Id} label="RSF" value={it.value.Building_BA__r.RSF__c} readonly=true>
+                        </lightning-input>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="6">
+                        <lightning-input if:true={it.first} key={it.value.Id} label="Year Built" value={it.value.Building_BA__r.Year_Built__c} readonly=true>
+                        </lightning-input>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="6">
+                        <lightning-input if:true={it.first} key={it.value.Id} label="Floors" value={it.value.Building_BA__r.Floors__c} readonly=true>
+                        </lightning-input>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="6">
+                        <lightning-input if:true={it.first} key={it.value.Id} label="Year Renovated" value={it.value.Building_BA__r.Year_Renovated__c} readonly=true>
+                        </lightning-input>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="6">
+                        <lightning-input if:true={it.first} key={it.value.Id} label="Website" value={it.value.Building_BA__r.building_website__c} readonly=true>
+                        </lightning-input>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="6">
+                        <lightning-input if:true={it.first} key={it.value.Id} label="Parking Ratio" value={it.value.Building_BA__r.Parking_Ratio__c} readonly=true>
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </template>
+        </template>
+        
+        <template if:false={buildingInfos}>
+            <lightning-layout-item size="12">
+                <lightning-input label="Building Address" value="" readonly=true>
+                </lightning-input>
+            </lightning-layout-item>
+            
+            <lightning-layout-item size="12">
+                <lightning-input label="Building Name" value="" readonly=true>
+                </lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="6">
+                <lightning-input label="RSF" value="" readonly=true>
+                </lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="6">
+                <lightning-input label="Year Built" value="" readonly=true>
+                </lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="6">
+                <lightning-input label="Floors" value="" readonly=true>
+                </lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="6">
+                <lightning-input label="Year Renovated" value="" readonly=true>
+                </lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="6">
+                <lightning-input label="Website" value="" readonly=true>
+                </lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="6">
+                <lightning-input label="Parking Ratio" value="" readonly=true>
+                </lightning-input>
+            </lightning-layout-item>
+
+        </template>
+      </div>
+    </lightning-card>
+  </template>
