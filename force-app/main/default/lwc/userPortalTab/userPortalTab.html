@@ -1,64 +1,85 @@
 <template>
-    <lightning-card title="BuildingInformation" icon-name="custom:custom14">
+    <lightning-card title="Building Information">
       <div class="slds-m-around_medium">
         <!--<p>Hello, {greeting}!</p> -->
 
         <template if:true={buildingInfos}>
             <template iterator:it={buildingInfos}>
-            <!--<template for:each={buildingInfos} for:item="building_account__c">-->
-                <!--<p key={building_account__c.Id}>{building_account__c.Building_BA__r.Name}</p>
+                <!--
+            <template for:each={buildingInfos} for:item="building_account__c">
                 <p key={building_account__c.Id}>{building_account__c.Building_BA__r.Name}</p>
+                <p key={building_account__c.Id}>{building_account__c.Building_BA__r.Name__c}</p>
                 <p key={building_account__c.Id}>{building_account__c.Building_BA__r.RSF__c}</p>
                 <p key={building_account__c.Id}>{building_account__c.Building_BA__r.Floors__c}</p>
                 <p key={building_account__c.Id}>{building_account__c.Building_BA__r.building_website__c}</p>
                 <p key={building_account__c.Id}>{building_account__c.Building_BA__r.Year_Built__c}</p>
                 <p key={building_account__c.Id}>{building_account__c.Building_BA__r.Year_Renovated__c}</p>
-                <p key={building_account__c.Id}>{building_account__c.Building_BA__r.Parking_Ratio__c}</p> -->
+                <p key={building_account__c.Id}>{building_account__c.Building_BA__r.Parking_Ratio__c}</p>
+                --> 
+                <!--Account Record Id : {recordId}-->
+                
                 <lightning-layout multiple-rows key={it.value.Id}>
 
                     <lightning-layout-item size="12">
-                        <lightning-input if:true={it.first} key={it.value.Id} label="Building Address" value={it.value.Building_BA__r.Name} readonly=true>
-                        </lightning-input>
+                        <div class="slds-border_bottom">
+                            <lightning-input if:true={it.first} key={it.value.Id} label="Building Address" value={buildingAddress} readonly=true>
+                            </lightning-input>
+                        </div>
                     </lightning-layout-item>
                     
                     <lightning-layout-item size="12">
-                        <lightning-input if:true={it.first} key={it.value.Id} label="Building Name" value={it.value.Building_BA__r.Name__c} readonly=true>
-                        </lightning-input>
+                        <div class="slds-border_bottom">
+                            <lightning-input if:true={it.first} key={it.value.Id} label="Building Name" value={it.value.Building_BA__r.Name__c} readonly=true>
+                            </lightning-input>
+                        </div>
                     </lightning-layout-item>
 
                     <lightning-layout-item size="6">
-                        <lightning-input if:true={it.first} key={it.value.Id} label="RSF" value={it.value.Building_BA__r.RSF__c} readonly=true>
-                        </lightning-input>
+                        <div class="slds-border_bottom">
+                            <lightning-input if:true={it.first} key={it.value.Id} label="RSF" value={it.value.Building_BA__r.RSF__c} readonly=true>
+                            </lightning-input>
+                        </div>
                     </lightning-layout-item>
 
                     <lightning-layout-item size="6">
-                        <lightning-input if:true={it.first} key={it.value.Id} label="Year Built" value={it.value.Building_BA__r.Year_Built__c} readonly=true>
-                        </lightning-input>
+                        <div class="slds-border_bottom">
+                            <lightning-input if:true={it.first} key={it.value.Id} label="Year Built" value={it.value.Building_BA__r.Year_Built__c} readonly=true>
+                            </lightning-input>
+                        </div>
                     </lightning-layout-item>
 
                     <lightning-layout-item size="6">
-                        <lightning-input if:true={it.first} key={it.value.Id} label="Floors" value={it.value.Building_BA__r.Floors__c} readonly=true>
-                        </lightning-input>
+                        <div class="slds-border_bottom">
+                            <lightning-input if:true={it.first} key={it.value.Id} label="Floors" value={it.value.Building_BA__r.Floors__c} readonly=true>
+                            </lightning-input>
+                        </div>
                     </lightning-layout-item>
 
                     <lightning-layout-item size="6">
-                        <lightning-input if:true={it.first} key={it.value.Id} label="Year Renovated" value={it.value.Building_BA__r.Year_Renovated__c} readonly=true>
-                        </lightning-input>
+                        <div class="slds-border_bottom">
+                            <lightning-input if:true={it.first} key={it.value.Id} label="Year Renovated" value={it.value.Building_BA__r.Year_Renovated__c} readonly=true>
+                            </lightning-input>
+                        </div>
                     </lightning-layout-item>
 
                     <lightning-layout-item size="6">
-                        <lightning-input if:true={it.first} key={it.value.Id} label="Website" value={it.value.Building_BA__r.building_website__c} readonly=true>
-                        </lightning-input>
+                        <div class="slds-border_bottom">
+                            <lightning-input if:true={it.first} key={it.value.Id} label="Website" value={it.value.Building_BA__r.building_website__c} readonly=true>
+                            </lightning-input>
+                        </div>
                     </lightning-layout-item>
 
                     <lightning-layout-item size="6">
-                        <lightning-input if:true={it.first} key={it.value.Id} label="Parking Ratio" value={it.value.Building_BA__r.Parking_Ratio__c} readonly=true>
-                        </lightning-input>
+                        <div class="slds-border_bottom">
+                            <lightning-input if:true={it.first} key={it.value.Id} label="Parking Ratio" value={it.value.Building_BA__r.Parking_Ratio__c} readonly=true>
+                            </lightning-input>
+                        </div>
                     </lightning-layout-item>
                 </lightning-layout>
             </template>
         </template>
-        
+
+        <!--
         <template if:false={buildingInfos}>
             <lightning-layout-item size="12">
                 <lightning-input label="Building Address" value="" readonly=true>
@@ -101,6 +122,94 @@
             </lightning-layout-item>
 
         </template>
+        -->
       </div>
     </lightning-card>
+
+    <lightning-card title="Your Comp">
+        <div class="slds-m-around_medium">
+            <template if:true={accountInfos}>
+                <template for:each={accountInfos} for:item="acc">
+                    <lightning-layout multiple-rows key={acc.Id}>
+                        
+                            <lightning-layout-item size="6">
+                                <div class="slds-border_bottom">
+                                    <lightning-input label="Starting Date" value={acc.Rate__c} readonly=true>
+                                    </lightning-input>
+                                </div>
+                            </lightning-layout-item>
+                        
+                            <lightning-layout-item size="6">
+                                <div class="slds-border_bottom">
+                                    <lightning-input label="Term" value={termField} readonly=true>
+                                    </lightning-input>
+                                </div>
+                            </lightning-layout-item>
+                        
+                        
+                            <lightning-layout-item size="6">
+                                <div class="slds-border_bottom">
+                                    <lightning-input label="Escalations" value={acc.Escalations__c} readonly=true>
+                                    </lightning-input>
+                                </div>
+                            </lightning-layout-item>
+                        
+                        
+                            <lightning-layout-item size="6">
+                                <div class="slds-border_bottom">
+                                    <lightning-input label="RSF" value={acc.RSF__c} readonly=true>
+                                    </lightning-input>
+                                </div>
+                            </lightning-layout-item>
+                        
+                        
+                            <lightning-layout-item size="6">
+                                <div class="slds-border_bottom">
+                                    <lightning-input label="Lease Commencement" value={acc.LCD__c} readonly=true>
+                                    </lightning-input>
+                                </div>
+                            </lightning-layout-item>
+                        
+                        
+                            <lightning-layout-item size="6">
+                                <div class="slds-border_bottom" >
+                                    <lightning-input label="Free Rent" value={freeRentField} readonly=true>
+                                    </lightning-input>
+                                </div>
+                            </lightning-layout-item>
+                        
+                        
+                            <lightning-layout-item size="6">
+                                <div class="slds-border_bottom">
+                                    <lightning-input label="Lease Expiration Date" value={acc.LEXP__c} readonly=true>
+                                    </lightning-input>
+                                </div>
+                            </lightning-layout-item>
+                        
+                        
+                            <lightning-layout-item size="6">
+                                <div class="slds-border_bottom">
+                                    <lightning-input label="T.I.'s" value="" readonly=true>
+                                    </lightning-input>
+                                </div>
+                            </lightning-layout-item>
+                        
+
+
+                    </lightning-layout>
+                    <!--
+                    <p key={acc.Id}>{acc.Escalations__c}</p>
+                    <p key={acc.Id}>{acc.RSF__c}</p>
+                    <p key={acc.Id}>{acc.Free_Rent__c}</p>
+                    <p key={acc.Id}>{acc.Term__c}</p>
+                    -->
+                </template>
+
+
+            </template>
+  
+
+        </div>
+      </lightning-card>
+
   </template>
