@@ -131,7 +131,6 @@
             <template if:true={accountInfos}>
                 <template for:each={accountInfos} for:item="acc">
                     <lightning-layout multiple-rows key={acc.Id}>
-                        
                             <lightning-layout-item size="6">
                                 <div class="slds-border_bottom">
                                     <lightning-input label="Starting Date" value={acc.Rate__c} readonly=true>
@@ -141,7 +140,7 @@
                         
                             <lightning-layout-item size="6">
                                 <div class="slds-border_bottom">
-                                    <lightning-input label="Term" value={termField} readonly=true>
+                                    <lightning-input label="Term" value={acc.Term__c} readonly=true>
                                     </lightning-input>
                                 </div>
                             </lightning-layout-item>
@@ -189,7 +188,7 @@
                         
                             <lightning-layout-item size="6">
                                 <div class="slds-border_bottom">
-                                    <lightning-input label="T.I.'s" value="" readonly=true>
+                                    <lightning-input label="T.I.'s" value={TIsField} readonly=true>
                                     </lightning-input>
                                 </div>
                             </lightning-layout-item>
@@ -210,6 +209,165 @@
   
 
         </div>
-      </lightning-card>
+    </lightning-card>
+
+    <lightning-card title="Rent Schedule">
+        <div class="slds-m-around_medium">
+
+        </div>
+    </lightning-card>
+
+    <lightning-card title="Lease">
+        <div class="slds-m-around_medium">
+            <lightning-layout multiple-rows>
+                
+                <lightning-layout-item size="3">
+                    <div class="slds-border_top slds-border_right slds-border_bottom slds-border_left slds-text-align_center slds-p-around_small">
+                        <b>Abstract</b>
+                    </div>
+                </lightning-layout-item>
+            
+
+                <lightning-layout-item size="9">
+                    <div class="slds-border_top slds-border_right slds-border_bottom slds-border_left slds-p-around_small">
+                        <p>Item</p>
+                    </div>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="3">
+                    <div class="slds-border_top slds-border_right slds-border_bottom slds-border_left slds-text-align_center slds-p-around_small">
+                        <b>Combined Lease</b>
+                    </div>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="9">
+                    <div class="slds-border_top slds-border_right slds-border_bottom slds-border_left slds-p-around_small">
+                        <p>Item</p>
+                    </div>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="3">
+                    <div class="slds-border_top slds-border_right slds-border_bottom slds-border_left slds-text-align_center slds-p-around_small">
+                        <b>Highlighted Lease</b>
+                    </div>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="9">
+                    <div class="slds-border_top slds-border_right slds-border_bottom slds-border_left slds-p-around_small">
+                        <p>Item</p>
+                    </div>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="12">
+                    <div class="slds-border_top slds-border_right slds-border_bottom slds-border_left slds-text-align_center slds-p-around_small">
+                        <b>Individual Lease Documents</b>
+                    </div>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="3">
+                    <div class="slds-border_top slds-border_right slds-border_bottom slds-border_left slds-text-align_center slds-p-around_small">
+                        <b>Date</b>
+                    </div>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="9">
+                    <div class="slds-border_top slds-border_right slds-border_bottom slds-border_left slds-text-align_center slds-p-around_small">
+                        <b>Title</b>
+                    </div>
+                </lightning-layout-item>
+
+                <template if:true={individualLeaseDocuments}>
+                    <template for:each={individualLeaseDocuments} for:item="indvLeaseDoc">
+                        <lightning-layout-item size="3" key={indvLeaseDoc.Id}>
+                            <div class="slds-border_top slds-border_right slds-border_bottom slds-border_left slds-text-align_center slds-p-around_small">
+                                <p>{indvLeaseDoc.Lease_Date__c}</p>
+                            </div>
+                        </lightning-layout-item>
+
+                        <lightning-layout-item size="9" key={indvLeaseDoc.Id}>
+                            <div class="slds-border_top slds-border_right slds-border_bottom slds-border_left slds-text-align_center slds-p-around_small">
+                                <p>{indvLeaseDoc.Lease_Document_Name__c}</p>
+                            </div>
+                        </lightning-layout-item>
+                    </template>
+                </template>
+
+
+            
+            </lightning-layout>
+            
+            <template if:true={leases}>
+                <template for:each={leases} for:item="url">
+                    <lightning-layout multiple-rows key={url.Id}>
+                        <lightning-layout-item size="9">
+                            <p><lightning-formatted-url value="" label="@getURL(url.Id)" target="_blank" ></lightning-formatted-url></p>
+                            
+                            {url.Lease_Document_Name__c}
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </template>
+            </template>
+
+            <template for:each={urls} for:item="keyValue">
+                <tr key={keyValue.key}>
+                    <th scope="col">
+                        <p><lightning-formatted-url value={keyValue.value} label={keyValue.key} target="_blank" ></lightning-formatted-url></p>
+                        <!--<div>{keyValue.key}</div>
+                        <div>{keyValue.value}</div> -->
+                    </th>
+                </tr>
+            </template>
+
+            
+
+        </div>
+    </lightning-card>
+
+    <lightning-card title="Critical Dates">
+        <div class="slds-m-around_medium">
+            <lightning-layout>
+                
+                    <lightning-layout-item size="3">
+                        <div class="slds-border_top slds-border_right slds-border_bottom slds-border_left slds-text-align_center slds-p-around_small">
+                            <b>Date</b>
+                        </div>
+                    </lightning-layout-item>
+                
+
+                    <lightning-layout-item size="9">
+                        <div class="slds-border_top slds-border_right slds-border_bottom slds-border_left slds-p-around_small">
+                            <b>Item</b>
+                        </div>
+                    </lightning-layout-item>
+                
+            </lightning-layout>
+
+            <template if:true={criticalDates}>
+                <template for:each={criticalDates} for:item="crtDate">
+                        <lightning-layout multiple-rows key={crtDate.Id}>
+                            <lightning-layout-item size=3>
+                                <div class="slds-border_top slds-border_right slds-border_bottom slds-border_left slds-text-align_center slds-p-around_small">{crtDate.Critical_Date__c}</div>
+                            </lightning-layout-item>
+                            <lightning-layout-item size=9>
+                                <div class="slds-border_top slds-border_right slds-border_bottom slds-border_left slds-p-around_small">{crtDate.Critical_Date_Type__c}</div>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                </template>
+        </template>
+        
+        </div>
+    </lightning-card>
+
+    <lightning-card title="Reports">
+        <div class="slds-m-around_medium">
+
+        </div>
+    </lightning-card>
+
+    <lightning-card title="Remaining Obligation Data">
+        <div class="slds-m-around_medium">
+
+        </div>
+    </lightning-card>
 
   </template>
