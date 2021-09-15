@@ -242,9 +242,18 @@
 
                 <lightning-layout-item size="9">
                     <div class="slds-border_top slds-border_right slds-border_bottom slds-border_left slds-p-around_small">
-                        <p>Item</p>
+                        <template for:each={urlsCombinedLease} for:item="keyValue">
+                            <tr key={keyValue.key}>
+                                <th scope="col">
+                                    <p><lightning-formatted-url value={keyValue.value} label={keyValue.key} target="_blank" ></lightning-formatted-url></p>
+                                    <!--<div>{keyValue.key}</div>
+                                    <div>{keyValue.value}</div> -->
+                                </th>
+                            </tr>
+                        </template>
                     </div>
                 </lightning-layout-item>
+                
 
                 <lightning-layout-item size="3">
                     <div class="slds-border_top slds-border_right slds-border_bottom slds-border_left slds-text-align_center slds-p-around_small">

@@ -10,6 +10,7 @@ import getCriticalDates from '@salesforce/apex/BuildingAccountController.getCrit
 import getLeases from '@salesforce/apex/BuildingAccountController.getLeases';
 import getIndividualLeaseDocuments from '@salesforce/apex/BuildingAccountController.getIndividualLeaseDocuments';
 import urlsOfLeasesMap from '@salesforce/apex/BuildingAccountController.urlsOfLeasesMap';
+import urlsOfCombinedLease from '@salesforce/apex/BuildingAccountController.urlsOfCombinedLease';
 
 export default class BuildingInformation extends LightningElement {
   @api recordId
@@ -24,6 +25,7 @@ export default class BuildingInformation extends LightningElement {
   @track leases
   @track individualLeaseDocuments
   @track urls = []
+  @track urlsCombinedLease = []
   
 
 
@@ -152,7 +154,21 @@ export default class BuildingInformation extends LightningElement {
         }
   }
 
-  getURL(id) {
-      return '/lightning/r/Account/' + id +'/view';
+  @wire(urlsOfCombinedLease,{recordId:'$recordId'})
+  wiredURLCombinedLease({error, data}){
+      if(data){
+        for(let key in data) {
+            // Preventing unexcepted data
+            if (data.hasOwnProperty(key)) { // Filtering the data in the loop
+                this.urlsCombinedLease.push({key: key, value: data[key]});
+            }
+        }
+          this.error = undefined;
+          console.log('URLS: '+this.urls);
+      } else if(error){
+          this.error = error;
+          this.urlsCombinedLease = undefined;
+        }
   }
+
 }
