@@ -10,7 +10,11 @@ import getCriticalDates from '@salesforce/apex/BuildingAccountController.getCrit
 import getLeases from '@salesforce/apex/BuildingAccountController.getLeases';
 import getIndividualLeaseDocuments from '@salesforce/apex/BuildingAccountController.getIndividualLeaseDocuments';
 import urlsOfLeasesMap from '@salesforce/apex/BuildingAccountController.urlsOfLeasesMap';
-import urlsOfCombinedLease from '@salesforce/apex/BuildingAccountController.urlsOfCombinedLease';
+//import urlsOfCombinedLease from '@salesforce/apex/BuildingAccountController.urlsOfCombinedLease';
+//import urlsOfHighlightedLease from '@salesforce/apex/BuildingAccountController.urlsOfHighlightedLease';
+import urlOfCombinedLease from '@salesforce/apex/BuildingAccountController.urlOfCombinedLease';
+import urlOfHighlightedLease from '@salesforce/apex/BuildingAccountController.urlOfHighlightedLease';
+import individualLeasesInfo from '@salesforce/apex/BuildingAccountController.individualLeasesInfo';
 
 export default class BuildingInformation extends LightningElement {
   @api recordId
@@ -26,6 +30,10 @@ export default class BuildingInformation extends LightningElement {
   @track individualLeaseDocuments
   @track urls = []
   @track urlsCombinedLease = []
+  @track urlsHighlightedLease = []
+  @track combinedLeaseURL
+  @track highlightedLeaseURL
+  @track individualLease
   
 
 
@@ -154,9 +162,11 @@ export default class BuildingInformation extends LightningElement {
         }
   }
 
+  /*
   @wire(urlsOfCombinedLease,{recordId:'$recordId'})
   wiredURLCombinedLease({error, data}){
       if(data){
+          console.log('combined lease: '+data);
         for(let key in data) {
             // Preventing unexcepted data
             if (data.hasOwnProperty(key)) { // Filtering the data in the loop
@@ -168,6 +178,65 @@ export default class BuildingInformation extends LightningElement {
       } else if(error){
           this.error = error;
           this.urlsCombinedLease = undefined;
+        }else{
+            data=false;
+        }
+  }
+  */
+
+
+  /*
+  @wire(urlsOfHighlightedLease,{recordId:'$recordId'})
+  wiredURLHighlightedLease({error, data}){
+      if(data){
+        for(let key in data) {
+            // Preventing unexcepted data
+            if (data.hasOwnProperty(key)) { // Filtering the data in the loop
+                this.urlsHighlightedLease.push({key: key, value: data[key]});
+            }
+        }
+          this.error = undefined;
+          console.log('URLS: '+this.urls);
+      } else if(error){
+          this.error = error;
+          this.urlsHighlightedLease = undefined;
+        }
+  }
+  */
+
+  @wire(urlOfCombinedLease,{recordId:'$recordId'})
+  wiredCombinedLease({error, data}){
+      if(data){
+          this.combinedLeaseURL = data;
+          this.error = undefined;
+          console.log(this.combinedLeaseURL);
+      } else if(error){
+          this.error = error;
+          this.combinedLeaseURL = undefined;
+        }
+  }
+
+  @wire(urlOfHighlightedLease,{recordId:'$recordId'})
+  wiredHighlightedLease({error, data}){
+      if(data){
+          this.highlightedLeaseURL = data;
+          this.error = undefined;
+          console.log(this.highlightedLeaseURL);
+      } else if(error){
+          this.error = error;
+          this.highlightedLeaseURL = undefined;
+        }
+  }
+
+  @wire(individualLeasesInfo,{recordId:'$recordId'})
+  wiredIndividualLeasesDocs({error, data}){
+      if(data){
+          this.individualLease = data;
+          this.error = undefined;
+          console.log(this.individualLease);
+      } else if(error){
+          this.error = error;
+          this.individualLease = undefined;
         }
   }
 
