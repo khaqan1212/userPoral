@@ -7,14 +7,15 @@ import getBuildingAddressField from '@salesforce/apex/BuildingAccountController.
 import getFreeRentField from '@salesforce/apex/BuildingAccountController.getFreeRentField';
 import getTIsField from '@salesforce/apex/BuildingAccountController.getTIsField';
 import getCriticalDates from '@salesforce/apex/BuildingAccountController.getCriticalDates';
-import getLeases from '@salesforce/apex/BuildingAccountController.getLeases';
-import getIndividualLeaseDocuments from '@salesforce/apex/BuildingAccountController.getIndividualLeaseDocuments';
-import urlsOfLeasesMap from '@salesforce/apex/BuildingAccountController.urlsOfLeasesMap';
+//import getLeases from '@salesforce/apex/BuildingAccountController.getLeases';
+//import getIndividualLeaseDocuments from '@salesforce/apex/BuildingAccountController.getIndividualLeaseDocuments';
+//import urlsOfLeasesMap from '@salesforce/apex/BuildingAccountController.urlsOfLeasesMap';
 //import urlsOfCombinedLease from '@salesforce/apex/BuildingAccountController.urlsOfCombinedLease';
 //import urlsOfHighlightedLease from '@salesforce/apex/BuildingAccountController.urlsOfHighlightedLease';
 import urlOfCombinedLease from '@salesforce/apex/BuildingAccountController.urlOfCombinedLease';
 import urlOfHighlightedLease from '@salesforce/apex/BuildingAccountController.urlOfHighlightedLease';
 import individualLeasesInfo from '@salesforce/apex/BuildingAccountController.individualLeasesInfo';
+import getStartingRateField from '@salesforce/apex/BuildingAccountController.getStartingRateField';
 
 export default class BuildingInformation extends LightningElement {
   @api recordId
@@ -22,6 +23,7 @@ export default class BuildingInformation extends LightningElement {
   @track error
   @track accountInfos
   @track termField
+  @track startingRate
   @track buildingAddress
   @track freeRentField
   @track TIsField
@@ -34,6 +36,7 @@ export default class BuildingInformation extends LightningElement {
   @track combinedLeaseURL
   @track highlightedLeaseURL
   @track individualLease
+
   
 
 
@@ -74,6 +77,19 @@ export default class BuildingInformation extends LightningElement {
         this.termField = undefined;
         }
   }
+
+  @wire(getStartingRateField,{recordId:'$recordId'})
+  wiredStartingRateField({error, data}){
+      if(data){
+          this.startingRate = data;
+          this.error = undefined;
+          console.log('Term field: '+this.termField);
+      } else if(error){
+        this.error = error;
+        this.startingRate = undefined;
+        }
+  }
+
 
   @wire(getBuildingAddressField,{recordId:'$recordId'})
   wiredAddressField({error, data}){
@@ -120,7 +136,7 @@ export default class BuildingInformation extends LightningElement {
           this.criticalDates = undefined;
         }
   }
-  
+  /*
   @wire(getLeases,{recordId:'$recordId'})
   wiredLeases({error, data}){
       if(data){
@@ -144,7 +160,8 @@ export default class BuildingInformation extends LightningElement {
           this.individualLeaseDocuments = undefined;
         }
   }
-
+  */
+  /*
   @wire(urlsOfLeasesMap,{recordId:'$recordId'})
   wiredURLs({error, data}){
       if(data){
@@ -161,6 +178,7 @@ export default class BuildingInformation extends LightningElement {
           this.urls = undefined;
         }
   }
+  */
 
   /*
   @wire(urlsOfCombinedLease,{recordId:'$recordId'})

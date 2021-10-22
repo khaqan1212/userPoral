@@ -2,10 +2,10 @@
     <lightning-card title="Building Information">
       <div class="slds-m-around_medium">
         <!--<p>Hello, {greeting}!</p> -->
-
+<!--
         <template if:true={buildingInfos}>
             <template iterator:it={buildingInfos}>
-                <!--
+                
             <template for:each={buildingInfos} for:item="building_account__c">
                 <p key={building_account__c.Id}>{building_account__c.Building_BA__r.Name}</p>
                 <p key={building_account__c.Id}>{building_account__c.Building_BA__r.Name__c}</p>
@@ -17,12 +17,12 @@
                 <p key={building_account__c.Id}>{building_account__c.Building_BA__r.Parking_Ratio__c}</p>
                 --> 
                 <!--Account Record Id : {recordId}-->
-                
+                <!--
                 <lightning-layout multiple-rows key={it.value.Id}>
 
                     <lightning-layout-item size="12">
                         <div class="slds-border_bottom">
-                            <lightning-input if:true={it.first} key={it.value.Id} label="Building Address" value={buildingAddress} readonly=true>
+                            <lightning-input if:true={it.first} key={it.value.Id} value={buildingAddress} readonly=true>
                             </lightning-input>
                         </div>
                     </lightning-layout-item>
@@ -78,6 +78,123 @@
                 </lightning-layout>
             </template>
         </template>
+    -->
+
+
+
+
+
+                <!--
+            <template for:each={buildingInfos} for:item="building_account__c">
+                <p key={building_account__c.Id}>{building_account__c.Building_BA__r.Name}</p>
+                <p key={building_account__c.Id}>{building_account__c.Building_BA__r.Name__c}</p>
+                <p key={building_account__c.Id}>{building_account__c.Building_BA__r.RSF__c}</p>
+                <p key={building_account__c.Id}>{building_account__c.Building_BA__r.Floors__c}</p>
+                <p key={building_account__c.Id}>{building_account__c.Building_BA__r.building_website__c}</p>
+                <p key={building_account__c.Id}>{building_account__c.Building_BA__r.Year_Built__c}</p>
+                <p key={building_account__c.Id}>{building_account__c.Building_BA__r.Year_Renovated__c}</p>
+                <p key={building_account__c.Id}>{building_account__c.Building_BA__r.Parking_Ratio__c}</p>
+                --> 
+                <!--Account Record Id : {recordId}-->
+            <template if:true={buildingInfos}>
+                <lightning-layout multiple-rows>
+
+
+                    <lightning-layout-item size="3">
+                        <div class="slds-p-around_small">
+                            <b>Building Address: </b>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="9">
+                        <div class="slds-p-around_small">
+                            <p>{buildingAddress}</p>
+                        </div>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="3">
+                        <div class="slds-p-around_small">
+                            <b>Building Name: </b>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="9">
+                        <div class="slds-p-around_small">
+                            <p>{buildingInfos.Building_BA__r.Name__c}</p>
+                        </div>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="3">
+                        <div class="slds-p-around_small">
+                            <b>RSF: </b>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="3">
+                        <div class="slds-p-around_small">
+                            <p>{buildingInfos.Building_BA__r.RSF__c} </p>
+                        </div>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="3">
+                        <div class="slds-p-around_small">
+                            <b>Year Built: </b>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="3">
+                        <div class="slds-p-around_small">
+                            <p>{buildingInfos.Building_BA__r.Year_Built__c}</p>
+                        </div>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="3">
+                        <div class="slds-p-around_small">
+                            <b>Floors: </b>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="3">
+                        <div class="slds-p-around_small">
+                            <p>{buildingInfos.Building_BA__r.Floors__c}</p>
+                        </div>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="3">
+                        <div class="slds-p-around_small">
+                            <b>Year Renovated: </b>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="3">
+                        <div class="slds-p-around_small">
+                            <p>{buildingInfos.Building_BA__r.Year_Renovated__c}</p>
+                        </div>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="3">
+                        <div class="slds-p-around_small">
+                            <b>Website: </b>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="3">
+                        <div class="slds-p-around_small">
+                            <p>{buildingInfos.Building_BA__r.building_website__c}</p>
+                        </div>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="3">
+                        <div class="slds-p-around_small">
+                            <b>Parking Ratio: </b>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="3">
+                        <div class="slds-p-around_small">
+                            <p>{buildingInfos.Building_BA__r.Parking_Ratio__c}</p>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </template>
+
+
+
+
+
+
 
         <!--
         <template if:false={buildingInfos}>
@@ -129,67 +246,103 @@
     <lightning-card title="Your Comp">
         <div class="slds-m-around_medium">
             <template if:true={accountInfos}>
-                <template for:each={accountInfos} for:item="acc">
-                    <lightning-layout multiple-rows key={acc.Id}>
-                            <lightning-layout-item size="6">
-                                <div class="slds-border_bottom">
-                                    <lightning-input label="Starting Date" value={acc.Rate__c} readonly=true>
-                                    </lightning-input>
+                    <lightning-layout multiple-rows>
+                        
+                            <lightning-layout-item size="3">
+                                <div class="slds-p-around_small">
+                                    <b>Starting Rate: </b>
                                 </div>
                             </lightning-layout-item>
                         
-                            <lightning-layout-item size="6">
-                                <div class="slds-border_bottom">
-                                    <lightning-input label="Term" value={acc.Term__c} readonly=true>
-                                    </lightning-input>
+                            <lightning-layout-item size="3">
+                                <div class="slds-p-around_small">
+                                    <p>{startingRate}</p>
                                 </div>
                             </lightning-layout-item>
                         
-                        
-                            <lightning-layout-item size="6">
-                                <div class="slds-border_bottom">
-                                    <lightning-input label="Escalations" value={acc.Escalations__c} readonly=true>
-                                    </lightning-input>
+                            <lightning-layout-item size="3">
+                                <div class="slds-p-around_small">
+                                    <b>Term: </b>
                                 </div>
                             </lightning-layout-item>
-                        
-                        
-                            <lightning-layout-item size="6">
-                                <div class="slds-border_bottom">
-                                    <lightning-input label="RSF" value={acc.RSF__c} readonly=true>
-                                    </lightning-input>
+                            <lightning-layout-item size="3">
+                                <div class="slds-p-around_small">
+                                    <p>{accountInfos.Term__c}</p>
                                 </div>
                             </lightning-layout-item>
+
                         
                         
-                            <lightning-layout-item size="6">
-                                <div class="slds-border_bottom">
-                                    <lightning-input label="Lease Commencement" value={acc.LCD__c} readonly=true>
-                                    </lightning-input>
+                            <lightning-layout-item size="3">
+                                <div class="slds-p-around_small">
+                                    <b>Escalations: </b>
                                 </div>
                             </lightning-layout-item>
-                        
-                        
-                            <lightning-layout-item size="6">
-                                <div class="slds-border_bottom" >
-                                    <lightning-input label="Free Rent" value={freeRentField} readonly=true>
-                                    </lightning-input>
+                            <lightning-layout-item size="3">
+                                <div class="slds-p-around_small">
+                                    <p>{accountInfos.Escalations__c}</p>
                                 </div>
                             </lightning-layout-item>
+
                         
                         
-                            <lightning-layout-item size="6">
-                                <div class="slds-border_bottom">
-                                    <lightning-input label="Lease Expiration Date" value={acc.LEXP__c} readonly=true>
-                                    </lightning-input>
+                            <lightning-layout-item size="3">
+                                <div class="slds-p-around_small">
+                                    <b>RSF: </b>
+                                </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="3">
+                                <div class="slds-p-around_small">
+                                    <p>{accountInfos.RSF__c}</p>
                                 </div>
                             </lightning-layout-item>
                         
                         
-                            <lightning-layout-item size="6">
-                                <div class="slds-border_bottom">
-                                    <lightning-input label="T.I.'s" value={TIsField} readonly=true>
-                                    </lightning-input>
+                            <lightning-layout-item size="3">
+                                <div class="slds-p-around_small">
+                                    <b>Lease Commencement: </b>
+                                </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="3">
+                                <div class="slds-p-around_small">
+                                    <p>{accountInfos.LCD__c}</p>
+                                </div>
+                            </lightning-layout-item>
+                        
+                        
+                            <lightning-layout-item size="3">
+                                <div class="slds-p-around_small" >
+                                    <b>Free Rent: </b>
+                                </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="3">
+                                <div class="slds-p-around_small" >
+                                    <p>{freeRentField}</p>
+                                </div>
+                            </lightning-layout-item>
+
+                        
+                        
+                            <lightning-layout-item size="3">
+                                <div class="slds-p-around_small">
+                                    <b>Lease Expiration Date: </b>
+                                </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="3">
+                                <div class="slds-p-around_small">
+                                    <p>{accountInfos.LEXP__c}</p>
+                                </div>
+                            </lightning-layout-item>
+                        
+                        
+                            <lightning-layout-item size="3">
+                                <div class="slds-p-around_small">
+                                    <b>T.I.'s: </b>
+                                </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="3">
+                                <div class="slds-p-around_small">
+                                    <p>{TIsField}</p>
                                 </div>
                             </lightning-layout-item>
                         
@@ -202,7 +355,6 @@
                     <p key={acc.Id}>{acc.Free_Rent__c}</p>
                     <p key={acc.Id}>{acc.Term__c}</p>
                     -->
-                </template>
 
 
             </template>
